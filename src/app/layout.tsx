@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import './globals.scss'
+import { Toaster } from "sonner"; // biblioteca do sonner, para colocar msg de aviso
 
+const inter = Inter({subsets: ["latin"]})
 
 
 export const metadata: Metadata = {
@@ -16,7 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body  >
+      <body  className={inter.className}>
+        <Toaster // essa é a mensagem que quero que aparece e as confg da onde eu quero que ela apareça (biblioteca do sonner)
+        position="bottom-right"
+        toastOptions={{
+          style:{
+            backgroundColor:"#f1f1f1",
+            color:"#131313",
+            borderColor:"rgba(255,255,255,0.5"
+          }
+        }}
+        />
         {children}
       </body>
     </html>

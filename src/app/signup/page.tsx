@@ -1,17 +1,18 @@
-
+"use client"
 
 import Image from "next/image"
 import Link from "next/link"
 import styles from '../page.module.scss'
 import { api } from '@/services/api'// importando meu backend para que seja enviado os dados
 import { redirect } from "next/navigation" // para direcionar o usuario para outra tela
+import { toast } from "sonner"; // importando a mensagem do sonner na qual eu configurei la no layout principal 
 
 
 export default  function Signup(){
 
     async function handleRegister(formData: FormData){
 
-        "use server"
+        
         const name = formData.get("name")
         const email = formData.get("email")
         const password = formData.get("password")
@@ -27,12 +28,15 @@ export default  function Signup(){
                 password
             } )
         }catch(err){
-            console.log('error')
+          toast.warning("Falha ao realizar login ")
             console.log(err)
         }
+       
 
         redirect("/") // depois que o usuario criar seu login, vou mandar ele para pagina de login 
+        
     }
+    
     return(
         <>
       <div className={styles.containerCenter}>
@@ -75,6 +79,7 @@ export default  function Signup(){
               <Link href='/' className={styles.text}>
                 Já possui uma conta? Faça Login
               </Link>
+            
         </section>
       </div>
         </>

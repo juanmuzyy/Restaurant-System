@@ -2,9 +2,10 @@
 import Link from 'next/link'
 import styles from './styles.module.scss'
 import Image from 'next/image'
-import { LogInIcon } from 'lucide-react' // biblioteca de icons react
+import { LogInIcon, LogOut } from 'lucide-react' // biblioteca de icons react
 import { deleteCookie } from 'cookies-next' // serve para que quando eu fizer o logout, os cookies sejam excluidos, no caso os token 
 import { useRouter } from 'next/navigation' // so pode ser usando em component que usamos o "use client" (linha 1)
+import { toast } from "sonner"; // importando a mensagem do sonner na qual eu configurei la no layout principal 
 
 export function Header(){
 
@@ -12,7 +13,7 @@ export function Header(){
     
     async function handleLogout(){
         deleteCookie("session", {path: "/"}) // quero entao que ao fazer o logout, seja deletado o cookie com o nome sessio, no caso o que eu dei o nome 
-       
+       toast.success("LogOut feito com sucesso!!")
         router.replace("/") // para substituit a rota que eu estiver, no caso agora vai para a rota de login 
     }
     
